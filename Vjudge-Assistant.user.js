@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name				Vjudge Assistant
-// @namespace			http://tampermonkey.net/
-// @version				beta 1.0
+// @name		Vjudge Assistant
+// @namespace		http://tampermonkey.net/
+// @version		beta-20200217
 // @description:zh-cn	一键复制样例输入、输出
-// @author				doublebit
-// @match				https://vjudge.net/*
-// @require  			https://code.jquery.com/jquery-3.4.1.min.js
-// @require  			https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
+// @author		doublebit
+// @match		https://vjudge.net/*
+// @require  		https://code.jquery.com/jquery-3.4.1.min.js
+// @require  		https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
 // ==/UserScript==
 
 window.onload=setTimeout(function(){
