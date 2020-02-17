@@ -1,34 +1,52 @@
 // ==UserScript==
-// @name			Vjudge Assistant
-// @namespace			https://github.com/doublebit015/Vjudge-Assistant
-// @version			beta
-// @description:zh-cn		一键复制样例输入、输出
-// @author			doublebit
-// @match			https://vjudge.net/*
+// @name				Vjudge Assistant
+// @namespace			http://tampermonkey.net/
+// @version				beta
+// @description:zh-cn	一键复制样例输入、输出
+// @author				doublebit
+// @match				https://vjudge.net/*
 // @require  			https://code.jquery.com/jquery-3.4.1.min.js
 // @require  			https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js
 // ==/UserScript==
 
-//去广告
+window.onload=setTimeout(function(){
 $("#prob-ads").remove();
-$("dd:contains('<!-- Prob desc tail -->')").remove();
-$("dt:contains('Sponsor')").remove();
+$('[rel="preload"]').remove();
+$('[src*="google"]').remove();
+$('[id*="google"]').remove();
+$('[class*="google"]').remove();
+$('[src*="/static/bundle/"]').remove();
+$("script:contains('google')").remove();
+//alert('first');
+},3000);
 
-//加id，方便定位
+//uncertain
+window.onload=setTimeout(function(){/*
+$('[rel="preload"]').remove();
+$('[src*="google"]').remove();
+$('[id*="google"]').remove();
+$('[class*="google"]').remove();
+$('[src*="/static/bundle/"]').remove();
+$("script:contains('google')").remove(); */
+$("dt:contains('Sponsor')").remove();
+$("dd:contains('<!-- Prob desc tail -->')").remove();
+//alert('second');
+},240000);
+
 function addID() {
 	var elem;
-	elem = document.getElementsByClassName("sio")[0];
-	if (elem)
-		elem.setAttribute("id","si");
-	elem = document.getElementsByClassName("sio")[1];
-	if (elem)
-		elem.setAttribute("id","so");
+	elem = $("dd pre");
+    var size = elem.length;
+	if (elem[size-2])
+		elem[size-2].setAttribute("id","si");
+	if (elem[size-1])
+		elem[size-1].setAttribute("id","so");
 }
 addID();
 
-//实例化Clipboard
 var clipboard = new ClipboardJS('.copyBtn');
 
-//添加按钮
-$("dt:contains('Sample Input')").append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#si'>Copy</button>");
-$("dt:contains('Sample Output')").append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#so'>Copy</button>");
+$("dt:contains('Sample Input'),dt:contains('样例输入'),.input .title,h4:contains('Sample Input')")
+    .append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#si'>Copy</button>");
+$("dt:contains('Sample Output'),dt:contains('样例输出'),.output .title,h4:contains('Sample Output')")
+    .append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#so'>Copy</button>");
