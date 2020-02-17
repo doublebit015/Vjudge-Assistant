@@ -33,20 +33,22 @@ $("dd:contains('<!-- Prob desc tail -->')").remove();
 //alert('second');
 },240000);
 
-function addID() {
-	var elem;
-	elem = $("dd pre");
-    var size = elem.length;
-	if (elem[size-2])
-		elem[size-2].setAttribute("id","si");
-	if (elem[size-1])
-		elem[size-1].setAttribute("id","so");
-}
-addID();
-
 var clipboard = new ClipboardJS('.copyBtn');
 
-$("dt:contains('Sample Input'),dt:contains('样例输入'),.input .title,h4:contains('Sample Input')")
-    .append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#si'>Copy</button>");
-$("dt:contains('Sample Output'),dt:contains('样例输出'),.output .title,h4:contains('Sample Output')")
-    .append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#so'>Copy</button>");
+var i;
+
+var input = $("dt:contains('Sample Input'),dt:contains('样例输入'),.input .title,h4:contains('Sample Input')");
+var size_in = input.length;
+for (i=0;i<size_in;i++) {
+	input.eq(i).append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#input_" + i + "'>Copy</button>");
+	var sample_in = input.eq(i).next();//.find("pre").eq(0);
+	sample_in.attr("id","input_" + i);
+}
+
+var output = $("dt:contains('Sample Output'),dt:contains('样例输出'),.output .title,h4:contains('Sample Output')");
+var size_out = output.length;
+for (i=0;i<size_out;i++) {
+	output.eq(i).append("<button type='button' style='float:right' class='copyBtn' data-clipboard-target='#output_" + i + "'>Copy</button>");
+	var sample_out = output.eq(i).next();//.find("pre").eq(0);
+	sample_out.attr("id","output_" + i);
+}
