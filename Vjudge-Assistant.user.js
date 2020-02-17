@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name				Vjudge Assistant
 // @namespace			http://tampermonkey.net/
-// @version				beta
+// @version				beta 1.0
 // @description:zh-cn	一键复制样例输入、输出
 // @author				doublebit
 // @match				https://vjudge.net/*
