@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name		Vjudge Assistant
-// @namespace		http://tampermonkey.net/
-// @version		1.0
+// @namespace		https://github.com/doublebit015/Vjudge-Assistant
+// @version		1.0.1
 // @description:zh-cn	一键复制样例输入、输出
 // @author		doublebit
 // @match		https://vjudge.net/*
@@ -30,12 +30,15 @@ for (i=0;i<size_out;i++) {
 }
 
 $("#prob-ads").remove();
-$('[rel="preload"]').remove();
-$('[src*="google"]').remove();
-$('[id*="google"]').remove();
-$('[class*="google"]').remove();
-$('[src*="/static/bundle/"]').remove();
-$("script:contains('google')").remove();
+window.onload = function() {
+    $('[rel="preload"]').remove();
+    $('[src*="google"]').remove();
+    $('[id*="google"]').remove();
+    $('[class*="google"]').remove();
+    $('[src*="/static/bundle/"]').remove();
+    $("script:contains('google')").remove();
+}
+
 $("body").on('DOMNodeInserted',"dt,dd",function(e) {
     if($(this).text() == "Sponsor") {
 		$(this).remove();
