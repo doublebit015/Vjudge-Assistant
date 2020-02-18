@@ -46,6 +46,6 @@ $("body").on('DOMNodeInserted',"dt,dd",function(e) {
     } else if (adscomeup == true) {
 		$(this).remove();
         $("body").off('DOMNodeInserted');
-        adscomeup = true;
+        adscomeup = false;
 	}
 });
